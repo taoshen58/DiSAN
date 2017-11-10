@@ -20,7 +20,7 @@
 
 __The Usage of *disan.py* will be introduced below, and as for the implementation of SNLI and SST, please enter corresponding folder for further introduction.__
 
-__And, Code for the other experiments appeared in the paper is under preparation.__
+__And, Code for the other experiments (e.g. SICK, MPQA, CR etc.) appeared in the paper is under preparation.__
 
 -------
 ## Usage of disan.py
