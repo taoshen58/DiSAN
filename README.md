@@ -1,5 +1,5 @@
 # Directional Self-Attention Network
-* This repo is the code of paper [DiSAN: Directional Self-Attention Network for RNN/CNN-free Language Understanding*](https://arxiv.org/abs/1709.04696).
+* This repo is the codes of [DiSAN: Directional Self-Attention Network for RNN/CNN-free Language Understanding](https://arxiv.org/abs/1709.04696).
 * This is python based codes implementation under tensorflow 1.2 DL framework.
 * The leaderboard of Stanford Natural Language Inference is available [here](https://nlp.stanford.edu/projects/snli/).
 * Please contact [Tao Shen](Tao.Shen@student.uts.edu.au) or open an issue for questions/suggestions.
