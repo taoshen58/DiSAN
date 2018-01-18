@@ -9,7 +9,7 @@ The introduction to NLI task, please refer to [Stanford Natural Language Inferen
 
 First of all, please clone repo and enter into project folder by:
 
-	git clone https://github.com/forreview/DiSAN
+	git clone https://github.com/taoshen58/DiSAN
 	cd DiSAN/SNLI_disan
 
 download data files into **dataset/** dir:
