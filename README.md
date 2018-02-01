@@ -7,12 +7,13 @@
 
 **Cite this paper using BibTex:**
 
-    @article{shen2017disan,
-    title={Disan: Directional self-attention network for rnn/cnn-free language understanding},
-    author={Shen, Tao and Zhou, Tianyi and Long, Guodong and Jiang, Jing and Pan, Shirui and Zhang, Chengqi},
-    journal={arXiv preprint arXiv:1709.04696},
-    year={2017}
+    @inproceedings{shen2018disan,
+    Author = {Shen, Tao and Zhou, Tianyi and Long, Guodong and Jiang, Jing and Pan, Shirui and Zhang, Chengqi},
+    Booktitle = {AAAI Conference on Artificial Intelligence},
+    Title = {DISAN: Directional self-attention network for rnn/cnn-free language understanding},
+    Year = {2018}
     }
+
 
 ## Overall Requirements
 * Python3 (verified on 3.5.2, or Anaconda3 4.2.0) 
