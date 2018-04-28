@@ -43,7 +43,7 @@ __And, Code for the other experiments (e.g. SICK, MPQA, CR etc.) appeared in the
 * param **scope**: tensorflow variable scope
 * param **keep\_prob**: float, dropout keep probability
 * param **is\_train**: tensorflow bool scalar
-* param **wd**: if wd>0, add related tensor to tf collectoion "weight_decay" for further l2 decay
+* param **wd**: if wd>0, add related tensor to tf collectoion "reg_vars" for further l2 decay
 * param **activation**: disan activation function [elu|relu|selu]
 * param **tensor\_dict**: a dict to record disan internal attention result (insignificance)
 * param **name**: record name suffix (insignificance)
