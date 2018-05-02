@@ -1,13 +1,19 @@
 # Fast Directional Self-Attention (Fast-DiSA) Mechanism
 
-This is the Tensorflow implementation for Fast-DiSA that is a time-efficient and memory-friendly multi-dim token2token self-attention mechanism for context fusion. 
+This is the Tensorflow implementation for Fast-DiSA that is a time-efficient and memory-friendly multi-dim token2token self-attention mechanism for context fusion. Fast-DiSA can be rega
 
 The details of this model are elaborated in [this paper](https://github.com/taoshen58/DiSAN/tree/master/Fast-DiSA/fast_disa.pdf).
 
+# How to Use
+just download [*fast_disa.py*](https://github.com/taoshen58/DiSAN/tree/master/Fast-DiSA/fast_disa.py) and add the line below to your code:
 
-## TODO
-1. ~~release the single layer version of Fast-DiSA~~
-2. release the stacking version of Fast-DiSA (like the deep model in the Transformer)
+    from fast_disa import fast_directional_self_attention, mask_ft_generation
+    
+    
+Then, follow the API below. 
+    
+
+
 
 ## API
     The general API for Fast Self-Attention Attention mechanism for context fusion.
@@ -76,8 +82,12 @@ The details of this model are elaborated in [this paper](https://github.com/taos
 | accelerate | False | True |
 | merge_var | False | True |
 
+## TODO
+1. ~~release the single layer version of Fast-DiSA~~
+2. release the stacking version of Fast-DiSA (like the deep model in the Transformer)
+
 ## Contact Infomation
-Email: [tao.shen@student.uts.edu.au](tao.shen@student.uts.edu.au)
+Email: [tao.shen@student.uts.edu.au](mailto:tao.shen@student.uts.edu.au)
 Feel free to contact me or open an issue if you have any question or encounter any bug!
 
 
