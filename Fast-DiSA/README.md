@@ -2,7 +2,7 @@
 
 This is the Tensorflow implementation for Fast-DiSA that is a time-efficient and memory-friendly multi-dim token2token self-attention mechanism for context fusion. 
 
-The details of this model are elaborated in [here]().
+The details of this model are elaborated in [this paper](https://github.com/taoshen58/DiSAN/tree/master/Fast-DiSA/fast_disa.pdf).
 
 
 ## TODO
@@ -76,6 +76,9 @@ The details of this model are elaborated in [here]().
 | accelerate | False | True |
 | merge_var | False | True |
 
+## Contact Infomation
+Email: [tao.shen@student.uts.edu.au](tao.shen@student.uts.edu.au)
+Feel free to contact me or open an issue if you have any question or encounter any bug!
 
 
 
