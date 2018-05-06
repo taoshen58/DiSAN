@@ -75,7 +75,7 @@ Then, follow the API below.
 | dot_activation_name | 'sigmoid' | 'exp' |
 | use_input_for_attn | False | True |
 | add_layer_for_multi | True | False |
-| activation_func_name | as you well | as you well |
+| activation_func_name | as you will | as you will |
 | apply_act_for_v | True | False |
 | input_hn | None | None |
 | output_hn | None | Set to `hn` for residual connection |
