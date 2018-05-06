@@ -105,7 +105,7 @@ Then, follow the API below.
 ## TODO List
 1. ~~release the single layer version of Fast-DiSA~~
 2. ~~release the stacking version of Fast-DiSA (like the deep model in the Transformer)~~
-3. ~~Projects codes for some NLP tasks~~
+3. Projects codes for some NLP tasks
 
 ## Contact Information
 Email: [tao.shen@student.uts.edu.au](mailto:tao.shen@student.uts.edu.au)
