@@ -75,7 +75,7 @@ Then, follow the API below.
     :param activation_func_name: same as that in Fast-DiSA;
     :param dot_activation_name: same as that in Fast-DiSA;
     :param layer_num: int-[], the number of layer stacked;
-    :param scope: soc
+    :param scope: str-[], scope name
     :return: tf.float32-[batch_size, sequence_length, hn]
 
 
