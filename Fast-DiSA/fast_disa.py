@@ -9,6 +9,54 @@ import math
 N_INF = -1e12
 
 
+def stacking_fast_directional_self_attention(
+        rep_tensor, rep_mask, hn, head_num=8,
+        is_train=None, residual_keep_prob=.8, attn_keep_prob=.8, dense_keep_prob=.9, wd=0.,  # dropout and L2
+        use_direction=True, attn_self=False,
+        activation_func_name='relu', dot_activation_name='exp',
+        layer_num=10, scope=None
+):
+    """
+    stacked Fast-DiSA
+    :param rep_tensor: same as that in Fast-DiSA;
+    :param rep_mask: same as that in Fast-DiSA;
+    :param hn: same as that in Fast-DiSA;
+    :param head_num: same as that in Fast-DiSA;
+    :param is_train: same as that in Fast-DiSA;
+    :param residual_keep_prob: float-[], dropout keep probability for residual connection;
+    :param attn_keep_prob: same as that in Fast-DiSA;
+    :param dense_keep_prob: same as that in Fast-DiSA;
+    :param wd: same as that in Fast-DiSA;
+    :param use_direction: same as that in Fast-DiSA;
+    :param attn_self: same as that in Fast-DiSA;
+    :param activation_func_name: same as that in Fast-DiSA;
+    :param dot_activation_name: same as that in Fast-DiSA;
+    :param layer_num: int-[], the number of layer stacked;
+    :param scope: soc
+    :return:
+    """
+    with tf.variable_scope(scope or 'stacking_fast_disa'):
+        final_mask_ft = mask_ft_generation(rep_mask, head_num, use_direction, attn_self)
+        x = rep_tensor
+        for layer_idx in range(layer_num):
+            with tf.variable_scope('layer_%d' % layer_idx):
+                # ffn
+                y = bn_dense_layer(
+                    x, hn, True, 0., 'ffn', activation_func_name, False, wd, dense_keep_prob, is_train)
+                x = residual_connection(x, y, is_train, residual_keep_prob, 'res_con_1')
+                # self-attn
+                y = fast_directional_self_attention(
+                    x, rep_mask, hn, head_num, is_train, attn_keep_prob, dense_keep_prob, wd, use_direction,
+                    attn_self=attn_self, use_fusion_gate=False, final_mask_ft=final_mask_ft,
+                    dot_activation_name=dot_activation_name, use_input_for_attn=True, add_layer_for_multi=False,
+                    activation_func_name=activation_func_name, apply_act_for_v=False, input_hn=None,
+                    output_hn=hn, accelerate=True, merge_var=False, scope='fast_disa'
+                )
+                x = residual_connection(x, y, is_train, residual_keep_prob, 'res_con_2')
+
+    return x
+
+
 def fast_directional_self_attention(
         rep_tensor, rep_mask, hn, head_num=2,
         is_train=None, attn_keep_prob=1., dense_keep_prob=1., wd=0.,  # dropout and L2
@@ -527,3 +575,29 @@ def multi_dim_souce2token_self_attn(rep_tensor, rep_mask, scope=None,
             tensor_dict[name] = soft
 
         return attn_output
+
+
+# --------------- residual connection -------------
+def residual_connection(x, y, is_train=None, residual_keep_prob=1., scope=None):
+    with tf.variable_scope(scope or 'residual_connection'):
+        y = dropout(y, residual_keep_prob, is_train)
+        return layer_norm(x + y, scope='layer_norm')
+
+
+def layer_norm(inputs, epsilon=1e-6, scope=None):
+    with tf.variable_scope(scope or "layer_norm"):
+        channel_size = inputs.get_shape().as_list()[-1]
+
+        scale = tf.get_variable("scale", shape=[channel_size],
+                                initializer=tf.ones_initializer())
+
+        offset = tf.get_variable("offset", shape=[channel_size],
+                                 initializer=tf.zeros_initializer())
+
+        mean = tf.reduce_mean(inputs, axis=-1, keep_dims=True)
+        variance = tf.reduce_mean(tf.square(inputs - mean), axis=-1,
+                                  keep_dims=True)
+
+        norm_inputs = (inputs - mean) * tf.rsqrt(variance + epsilon)
+
+        return norm_inputs * scale + offset
