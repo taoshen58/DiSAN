@@ -82,7 +82,7 @@ Then, follow the API below.
 
 ## Hyper-Parameters Suggestion 
 
-* param `accelerate` should be set to `True` if the model or task is dropout-sensitive.
+* param `accelerate` should be set to `False` if the model or task is dropout-sensitive.
 * param `use_direction` should be set to `False` when the input is not order-related.
 * The hyper-params choosing for both single layer and stacked layer is detailed in the Table below. The reason why we choose params like this is that we need a fastest and simplest fast-disa model for the stacking. Note that the suggested hyper-params below is only for `fast_directional_self_attention`, and the suggested hyper-params have been applied in `stacking_fast_directional_self_attention`.
 
